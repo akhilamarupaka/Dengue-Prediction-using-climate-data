@@ -1,0 +1,476 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+    {{ super() }}
+    <head>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <style>
+      [type="radio"]
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+
+      .cards-list {
+        width: 100%;
+    z-index: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    width: 200px;
+    height: 300px;
+    border-radius: 40px;
+  box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    cursor: pointer;
+    transition: 0.4s;
+  }
+
+
+  .card:hover {
+    transform: scale(0.9, 0.9);
+    box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25),
+      -5px -5px 30px 15px rgba(0,0,0,0.22);
+  }
+
+
+
+  @media all and (max-width: 500px) {
+    .card-list {
+      /* On small screens, we are no longer using row direction but column */
+      flex-direction: column;
+    }
+  }
+  label.is-checkbox {
+  background: #3273dc;
+  border: 1px solid transparent;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  display: inline-flex;
+  justify-content: center;
+  padding: calc(0.375em - 1px) 0.75em;
+  border-radius: 2px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  }
+  label.is-checkbox.is-primary {
+  background: #00d1b2;
+  }
+  label.is-checkbox.is-info {
+  background: #209cee;
+  }
+  label.is-checkbox.is-danger {
+  background: #ff3860;
+  }
+  label.is-checkbox.is-warning {
+  background: #ffdd57;
+  color: #363636;
+  }
+  label.is-checkbox.is-warning .checkmark:before {
+  background: rgba(245, 245, 245, 0.8);
+  }
+  label.is-checkbox.is-success {
+  background: #23d160;
+  }
+  label.is-checkbox.is-static {
+  background-color: #f5f5f5;
+  border-color: #dbdbdb;
+  color: #7a7a7a;
+  box-shadow: none;
+  pointer-events: none;
+  }
+  label.is-checkbox.is-static .checkmark:before {
+  background: rgba(122, 122, 122, 0.3);
+  }
+  label.is-checkbox.is-primary {
+  background: #00d1b2;
+  }
+  label.is-checkbox .checkmark {
+  color: transparent;
+  position: relative;
+  }
+  label.is-checkbox .checkmark i {
+  z-index: 1;
+  }
+  label.is-checkbox .checkmark:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  border-radius: 2px;
+  background: rgba(54, 54, 54, 0.3);
+  border: 1px solid rgba(54, 54, 54, 0.2);
+  }
+  label.is-checkbox input[type="checkbox"] {
+  position: absolute;
+  visibility: hidden;
+  cursor: pointer;
+  }
+  label.is-checkbox input[type="checkbox"]:checked ~ .checkmark {
+  color: inherit;
+  }
+  label.is-checkbox.is-rounded {
+  border-radius: 9999px;
+  }
+  label.is-checkbox.is-rounded .checkmark:before {
+  border-radius: 9999px;
+  }
+  label.is-checkbox:hover {
+  box-shadow: inset 0px 0px 9999px rgba(0, 0, 0, 0.05);
+  }
+  label.is-checkbox:active {
+  box-shadow: inset 0px 0px 9999px rgba(0, 0, 0, 0.1);
+  }
+  label.is-checkbox.is-small {
+  font-size: 0.75rem;
+  }
+  label.is-checkbox.is-medium {
+  font-size: 1.25rem;
+  }
+  label.is-checkbox.is-large {
+  font-size: 1.5rem;
+  }
+  label.is-checkbox .icon, label.is-checkbox .icon.is-small, label.is-checkbox .icon.is-medium, label.is-checkbox .icon.is-large {
+  height: 1.5em;
+  width: 1.5em;
+  margin-left: -0.35em;
+  margin-right: 0.35em;
+  }
+  label.is-checkbox .icon:first-child:not(:last-child) {
+  margin-right: 0.1875em;
+  margin-left: calc(-01.375em - 1px);
+  }
+  label.is-checkbox .icon:last-child:not(:first-child) {
+  margin-left: 0.1875em;
+  margin-right: calc(-0.375em - 1px);
+  }
+  label.is-checkbox .icon:first-child:last-child {
+  margin-left: calc(-0.575em - 1px);
+  }
+  .center {
+  margin: auto;
+  width:40%;
+  padding: 10px;
+}
+.center1 {
+margin: auto;
+width:45%;
+padding: 10px;
+}
+.center1 {
+margin: auto;
+width:60%;
+padding: 10px;
+}
+    </style>
+    </head>
+
+  {% endblock %}
+{% block content %}
+		<h3 class='title'>Statistics of people around you</h3>
+  <div class="cards-list">
+
+  <div class="card">
+
+      <p >Within 0.5 km</p>
+      <p> Total: {{variable1}}</p>
+      <p>Affected :{{variable2}}
+
+    </div>
+
+    <div class="card">
+
+      <p>Within 1 km</p>
+      <p > Total: {{variable3}}</p>
+      <p>Affected :{{variable4}}
+
+  </div>
+
+  <div class="card">
+    <p >Within 5 km</p>
+    <p> Total: {{variable5}}</p>
+    <p>Affected :{{variable6}}
+
+  </div>
+
+    <div class="card">
+      <p >Within 10 km</p>
+      <p> Total: {{variable7}}</p>
+      <p>Affected :{{variable8}}
+    </div>
+
+  </div>
+
+<br>
+<br>
+  <form action="{{ url_for('main.check')}}"method="post">
+    <div class="center1">
+      <h3 class="title">
+      What is your body temperature ?</h3>
+      </div>
+<div class="center">
+
+      <div class="field is-grouped is-grouped-center">
+        <span class="control">
+          <label class="is-checkbox is-medium  is-danger is-rounded">
+            <div class="field">
+            <input class="is-checkradio  is-medium" id="exampleRadioInline1" value="b40" name="rmatch" type="radio">
+
+            <span>Below 40 &#176 C</span>
+            </div>
+          </label>
+
+        </span>
+        <span class="control">
+          <label class="is-checkbox is-medium  is-danger is-rounded">
+            <div class="field">
+            <input value="a40"  id="mycheckbox" name="rmatch" type="radio">
+
+            <span>Above 40 &#176 C</span>
+            </div>
+          </label>
+
+        </span>
+
+        <span class="control">
+          <label class="is-checkbox is-medium  is-danger is-rounded">
+            <div class="field">
+            <input value="i40"  id="mycheckbox" name="rmatch" type="radio">
+            <span>Intermittent fever</span>
+            </div>
+          </label>
+
+        </span>
+
+        </div>
+        <h3 class="title">
+        Check the box if you have any below mentioned symptoms</h3>
+    <div class="field is-grouped is-grouped-center">
+
+
+    <span class="control">
+      <label class="is-checkbox is-medium  is-danger is-rounded">
+        <input value="Severe joint and muscle pain"  id="mycheckbox" name="match" type="checkbox">
+        <span  class="icon is-medium checkmark">
+          <i class="fa fa-check"></i>
+        </span>
+        <span>Severe joint and muscle pain</span>
+      </label>
+
+    </span>
+
+    <span class="control">
+      <label class="is-checkbox is-medium  is-danger is-rounded">
+        <input value="headaches"  id="mycheckbox" name="match" type="checkbox">
+        <span  class="icon is-medium checkmark">
+          <i class="fa fa-check"></i>
+        </span>
+        <span>headaches</span>
+      </label>
+
+    </span>
+
+    </div>
+    <div class="field is-grouped is-grouped-center">
+
+    <span class="control">
+      <label class="is-checkbox is-medium  is-danger is-rounded">
+        <input value="Severe abdominal pain"  id="mycheckbox" name="match" type="checkbox">
+        <span  class="icon is-medium checkmark">
+          <i class="fa fa-check"></i>
+        </span>
+        <span>Severe abdominal pain</span>
+      </label>
+
+    </span>
+    <span class="control">
+      <label class="is-checkbox is-medium is-rounded">
+        <input value="Vomiting blood" id="mycheckbox" name="match" type="checkbox">
+        <span  class="icon is-medium checkmark">
+          <i class="fa fa-check"></i>
+        </span>
+        <span>Vomiting Blood</span>
+      </label>
+
+    </span>
+    </div>
+        <div class="field is-grouped is-grouped-center">
+          <span class="control">
+            <label class="is-checkbox is-medium is-rounded">
+              <input value="Pain behind the eyes" id="mycheckbox" name="match" type="checkbox">
+              <span  class="icon is-medium checkmark">
+                <i class="fa fa-check"></i>
+              </span>
+              <span>Pain behind the eyes</span>
+            </label>
+
+          </span>
+
+
+
+          <span class="control">
+            <label class="is-checkbox is-medium is-rounded">
+              <input value="Swollen glands" id="mycheckbox" name="match" type="checkbox">
+              <span  class="icon is-medium checkmark">
+                <i class="fa fa-check"></i>
+              </span>
+              <span>Swollen glands</span>
+            </label>
+
+          </span>
+
+
+        </div>
+
+
+
+          <div class="field is-grouped is-grouped-center">
+
+          <span class="control">
+            <label class="is-checkbox is-medium  is-danger is-rounded">
+              <input value="Skin rash" id="mycheckbox" name="match" type="checkbox">
+              <span  class="icon is-medium checkmark">
+                <i class="fa fa-check"></i>
+              </span>
+              <span>  Skin rash</span>
+            </label>
+
+          </span>
+
+          <span class="control">
+            <label class="is-checkbox is-medium  is-danger is-rounded">
+              <input value="No appetite" id="mycheckbox" name="match" type="checkbox">
+              <span  class="icon is-medium checkmark">
+                <i class="fa fa-check"></i>
+              </span>
+              <span>  No appetite</span>
+            </label>
+
+          </span>
+          <span class="control">
+            <label class="is-checkbox is-medium is-rounded">
+              <input value="high fever" id="mycheckbox" name="match" type="checkbox">
+              <span  class="icon is-medium checkmark">
+                <i class="fa fa-check"></i>
+              </span>
+              <span>high fever </span>
+            </label>
+
+          </span>
+          </div>
+          <div class="field is-grouped is-grouped-center">
+
+          <span class="control">
+            <label class="is-checkbox is-medium  is-warning is-rounded">
+              <input value="Fatigue" id="mycheckbox" name="match" type="checkbox">
+              <span  class="icon is-medium checkmark">
+                <i class="fa fa-check"></i>
+              </span>
+              <span>Fatigue</span>
+            </label>
+
+          </span>
+
+          <span class="control">
+            <label class="is-checkbox is-medium  is-warning is-rounded">
+              <input value="Nausea" id="mycheckbox" name="match" type="checkbox">
+              <span  class="icon is-medium checkmark">
+                <i class="fa fa-check"></i>
+              </span>
+              <span>Nausea</span>
+            </label>
+
+          </span>
+          <span class="control">
+            <label class="is-checkbox is-medium  is-warning is-rounded">
+              <input value="Vomiting" id="mycheckbox" name="match" type="checkbox">
+              <span  class="icon is-medium checkmark">
+                <i class="fa fa-check"></i>
+              </span>
+              <span>Vomiting</span>
+            </label>
+
+          </span>
+
+
+        </div>
+        <div class="field is-grouped is-grouped-center">
+
+        <span class="control">
+          <label class="is-checkbox is-medium  is-warning is-rounded">
+            <input value="Rapid breathing" id="mycheckbox" name="match" type="checkbox">
+            <span  class="icon is-medium checkmark">
+              <i class="fa fa-check"></i>
+            </span>
+            <span>Rapid breathing</span>
+          </label>
+
+        </span>
+
+        <span class="control">
+          <label class="is-checkbox is-medium  is-warning is-rounded">
+            <input value="Bleeding gums" id="mycheckbox" name="match" type="checkbox">
+            <span  class="icon is-medium checkmark">
+              <i class="fa fa-check"></i>
+            </span>
+            <span>  Bleeding gums</span>
+          </label>
+
+        </span>
+
+      </div>
+      <div class="center2">
+        <h3 class="title">
+        Have you been experiencing these symptoms for more than 2 days ?</h3>
+        </div>
+    <div class="center">
+
+        <div class="field is-grouped is-grouped-center">
+          <span class="control">
+            <label class="is-checkbox is-medium  is-danger is-rounded">
+              <div class="field">
+              <input value="y"  id="mycheckbox" name="r1match" type="radio">
+              <span>Yes</span>
+              </div>
+            </label>
+
+          </span>
+          <span class="control">
+            <label class="is-checkbox is-medium  is-danger is-rounded">
+              <div class="field">
+              <input value="n"  id="mycheckbox" name="r1match" type="radio">
+              <span>No</span>
+              </div>
+            </label>
+
+          </span>
+          </div>
+        <span class="control">
+             <button class="button is-medium   is-danger is-rounded">submit</button>
+           </span>
+
+</div>
+    <h3 class="title" syle="color:black;">{{ prediction_text }}</h3>
+
+    {% if type== 1 %}
+      <iframe src={{x}}  width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    {% endif %}
+
+</form>
+{% endblock %}

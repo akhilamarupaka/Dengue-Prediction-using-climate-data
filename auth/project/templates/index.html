@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script>
+    function showPosition() {
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              document.getElementById("lat").value = position.coords.latitude;
+                document.getElementById("lon").value = position.coords.longitude;
+            });
+        } else {
+            alert("Sorry, your browser does not support HTML5 geolocation.");
+        }
+    }
+</script>
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Dengue cases prediction form</h3>
+
+    <div class="login">
+    <form action="{{ url_for('main.predict_api')}}" method="post">
+    <button type="button" class="button is-block is-info is-large is-fullwidth" onclick="showPosition()";>Show position</button>
+    <br>
+    <div class="field">
+        <div class="control">
+    <center>  <p style="font-size:32px;color:black;">Latitude</p>    </center>    <input class="input is-large" type="text" name="lat" id="lat" placeholder="Latitude" autofocus="">
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+          <center>  <p style="font-size:32px;color:black;">Longitude</p>    </center>
+            <input class="input is-large" type="text" name="lon" id="lon" placeholder="Longitude" autofocus="">
+        </div>
+    </div>
+      <button class="button is-block is-info is-large is-fullwidth";>predict</button>
+  <center>  <p style="font-size:32px;color:black;"> {{ prediction_text_1 }}</p>    </center>     
+      </form>
+      <br>
+      <h1>OR</h1>
+      <br>
+      <form action="{{ url_for('main.predict')}}"method="post">
+            <div class="field">
+                <div class="control">
+                  <center>  <p style="font-size:32px;color:black;">Air Temperature</p>    </center>
+                    <input class="input is-large" type="Air Temp" name="air" placeholder="Air Temperature" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                  <center>  <p style="font-size:32px;color:black;">Average Temperature</p>    </center>
+                    <input class="input is-large" type="Average temp" name="avg" placeholder="Average Temperature" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                  <center>  <p style="font-size:32px;color:black;">Dew point</p>    </center>
+                    <input class="input is-large" type="reanalysis_dew_point_temp_c" name="reanalysis_dew_point_temp_c" placeholder="Dew point Temperature" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                  <center>  <p style="font-size:32px;color:black;">Relative Humidity</p>    </center>
+                    <input class="input is-large" type="rhumid" name="rhumid" placeholder="Relative Humidity" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                  <center>  <p style="font-size:32px;color:black;">Specific Humidity</p>    </center>
+                    <input class="input is-large" type="shumid" name="shumid" placeholder="Specific Humidity" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                  <center>  <p style="font-size:32px;color:black;">Diurnal Temperature</p>    </center>
+                    <input class="input is-large" type="diur" name="diur" placeholder="Diurnal Temperature" autofocus="">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                  <center>  <p style="font-size:32px;color:black;">Maximum Temperature</p>    </center>
+                    <input class="input is-large" type="max" name="max" placeholder="Maximum Temperature" autofocus="">
+                </div>
+            </div>
+            <button class="button is-block is-info is-large is-fullwidth";>predict</button>
+          <center>  <p style="font-size:32px;color:black;"> {{ prediction_text }}</p>    </center>
+    </form>
+    </div>
+</div>
+
+{% endblock %}
